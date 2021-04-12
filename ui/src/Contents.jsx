@@ -13,7 +13,7 @@ export default function Contents() {
       <Redirect exact from="/" to="/products" />
       <Route path="/products" component={ProductList} />
       <Route path="/edit/:id" component={ProductEdit}/>
-      <Route path="/image" component={ProductImage} />
+      <Route path="/image/:id" component={ProductImage} />
       <Route component={NotFound} />
     </Switch>
   );

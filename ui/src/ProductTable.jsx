@@ -4,8 +4,9 @@ import ProductRow from './ProductRow.jsx';
 // eslint-disable-next-line react/prefer-stateless-function
 export default class ProductTable extends React.Component {
   render() {
+    const {deleteProduct} = this.props;
     const productRows = this.props.products.map(
-      product => <ProductRow key={product.id} product={product} />,
+      (product, index) => <ProductRow key={product.id} product={product} deleteProduct={deleteProduct} index={index}/>,
     );
     return (
       <table className="bordered-table">
@@ -15,7 +16,8 @@ export default class ProductTable extends React.Component {
             <th>Price</th>
             <th>Category</th>
             <th>Image</th>
-            <th>Action</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

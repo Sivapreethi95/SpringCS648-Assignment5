@@ -1,6 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
+import NumInput from './NumInput.jsx';
+import TextInput from './TextInput.jsx';
 
 export default class ProductAdd extends React.Component {
   constructor() {
@@ -40,13 +42,13 @@ export default class ProductAdd extends React.Component {
           <option value="Accessories">Accessories</option>
         </select>
 
-        <input className="price-input" type="text" name="price" placeholder="Price" defaultValue="$" />
+        <NumInput className="price-input" type="text" name="price" placeholder="Price" defaultValue="$" />
         <br />
         <br />
         <label className="productName-label" htmlFor="productName">Product Name</label>
         <label className="image-label" htmlFor="image">Image URL</label>
         <br />
-        <input className="productName-input" type="text" name="productName" placeholder="Product Name" />
+        <TextInput className="productName-input" type="text" name="productName" placeholder="Product Name" />
         <input className="image-input" type="text" name="image" placeholder="Image" />
         <br />
         <br />

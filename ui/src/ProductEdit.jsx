@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import NumInput from './NumInput.jsx';
+import TextInput from './TextInput.jsx';
 
 export default class ProductEdit extends React.Component{
     constructor() {
         super();
         this.state = {
             product: {},
+            redirect: false
         }
         this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,18 +18,51 @@ export default class ProductEdit extends React.Component{
         this.loadData();
     }
 
-    onChange(event){
-        const {name, value} = event.target;
+    onChange(event, naturalValue){
+        const {name, value: textValue} = event.target;
+        const value = naturalValue === undefined ? textValue : naturalValue;
         this.setState(prevState => ({
             product: {...prevState.product, [name]: value },
         }))
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
         const {product} = this.state;
         console.log('Product Editing');
         console.log(product);
+
+        const query = `mutation productUpdate(
+            $id: Int!
+            $changes: ProductUpdateInputs!
+        ) {
+            productUpdate(
+                id: $id
+                changes: $changes
+            ) {
+                id
+                category
+                productName
+                price 
+                image
+            }
+        }`;
+        console.log("A");
+        const {id, created, ...changes } = product;
+        console.log("B");
+        const response = await fetch(window.ENV.UI_API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query, variables: {id, changes}}),
+        });
+        console.log("C");
+        const result = await response.json();
+        console.log(result);
+        if (result) {
+            this.setState({product: result.data.productUpdate, redirect: true });
+            console.log("Product Updated Successfully!!");
+        }
+
     }
     async loadData() {
         const query = `query product($id: Int!) {
@@ -52,11 +88,15 @@ export default class ProductEdit extends React.Component{
     }
 
     render() {
+        const { redirect } = this.state;
+        if (redirect) {
+            return <Redirect to="/"/>;
+        }
         const { product: { id }} = this.state;
         const { match: { params: {id: propsId }}} = this.props;
         if (id == null){
             if(propsId!=null) {
-                return <h3>{`Issue with ID ${id} not found`}</h3>
+                return <h3>{`Product with ID ${propsId} not found`}</h3>
             }
           return null
         }
@@ -66,7 +106,7 @@ export default class ProductEdit extends React.Component{
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <h3>{`Editing Issue: ${id}`}</h3>
+                <h3>{`Editing Product: ${id}`}</h3>
                 <table>
                     <tbody>
                         <tr>
@@ -82,11 +122,11 @@ export default class ProductEdit extends React.Component{
                         </tr>
                         <tr>
                             <td>Product Name:</td>
-                            <td><input type="text" name="productName" value={productName} onChange={this.onChange}/></td>
+                            <td><TextInput type="text" name="productName" value={productName} onChange={this.onChange} key={id}/></td>
                         </tr>
                         <tr>
                             <td>Price:</td>
-                            <td><input type="text" name="price" value={price} onChange={this.onChange} /></td>
+                            <td><NumInput type="text" name="price" value={price} onChange={this.onChange} key={id}/></td>
                         </tr>
                         
                                 
