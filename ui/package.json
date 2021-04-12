@@ -1,5 +1,5 @@
 {
-  "name": "springcs648-assignment4-ui",
+  "name": "springcs648-assignment5-ui",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sivapreethi95/SpringCS648-Assignment4.git"
+    "url": "git+https://github.com/Sivapreethi95/SpringCS648-Assignment5.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sivapreethi95/SpringCS648-Assignment4/issues"
+    "url": "https://github.com/Sivapreethi95/SpringCS648-Assignment5/issues"
   },
-  "homepage": "https://github.com/Sivapreethi95/SpringCS648-Assignment4#readme",
+  "homepage": "https://github.com/Sivapreethi95/SpringCS648-Assignment5#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "dotenv": "^6.2.0",

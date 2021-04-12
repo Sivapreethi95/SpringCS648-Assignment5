@@ -1,5 +1,5 @@
 {
-  "name": "springcs648-assignment4-api",
+  "name": "springcs648-assignment5-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sivapreethi95/SpringCS648-Assignment4.git"
+    "url": "git+https://github.com/Sivapreethi95/SpringCS648-Assignment5.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sivapreethi95/SpringCS648-Assignment4/issues"
+    "url": "https://github.com/Sivapreethi95/SpringCS648-Assignment5/issues"
   },
-  "homepage": "https://github.com/Sivapreethi95/SpringCS648-Assignment4#readme",
+  "homepage": "https://github.com/Sivapreethi95/SpringCS648-Assignment5#readme",
   "dependencies": {
     "apollo-server-express": "^2.21.0",
     "dotenv": "^8.2.0",
